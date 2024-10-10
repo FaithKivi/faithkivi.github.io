@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html lang="cn-zh">
+<head>
+    <meta charset="utf-8" />
+    <title>About | FaithKivi&#39;s</title>
+    <meta name="author" content="FaithKivi" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
+    />
+    <link rel="icon" href="/images/faithkivi.jpg" />
+    <link rel="preconnect" href="https://s4.zstatic.net" />
+<script src="https://s4.zstatic.net/ajax/libs/vue/3.3.7/vue.global.prod.min.js"></script>
+<link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.cn" />
+<link rel="preconnect" href="https://fonts.gstatic.cn" crossorigin />
+<link
+    rel="stylesheet"
+    href="https://fonts.googleapis.cn/css2?family=Fira+Code:wght@400;500;600;700&family=Lexend:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;800;900&display=swap"
+/>
+<script> const mixins = {}; </script>
+
+<script src="https://polyfill.alicdn.com/v3/polyfill.min.js?features=default"></script>
+
+
+<script src="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="https://s4.zstatic.net/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+<link
+    rel="stylesheet"
+    href="https://s4.zstatic.net/ajax/libs/highlight.js/11.9.0/styles/github.min.css"
+/>
+<script src="/js/lib/highlight.js"></script>
+
+
+
+<script src="/js/lib/preview.js"></script>
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/main.css" />
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+<body>
+    <div id="layout">
+        <transition name="fade">
+            <div id="loading" v-show="loading">
+                <div id="loading-circle">
+                    <h2>LOADING</h2>
+                    <p>加载过慢请开启缓存 浏览器默认开启</p>
+                    <img src="/images/loading.gif" />
+                </div>
+            </div>
+        </transition>
+        <div id="menu" :class="{ hidden: hiddenMenu, 'menu-color': menuColor}">
+    <nav id="desktop-menu">
+        <a class="title" href="/">
+            <span>FAITHKIVI&#39;S</span>
+        </a>
+        
+        <a href="/">
+            <i class="fa-solid fa-house fa-fw"></i>
+            <span>&ensp;Home</span>
+        </a>
+        
+        <a href="/about">
+            <i class="fa-solid fa-id-card fa-fw"></i>
+            <span>&ensp;About</span>
+        </a>
+        
+        <a href="/archives">
+            <i class="fa-solid fa-box-archive fa-fw"></i>
+            <span>&ensp;Archives</span>
+        </a>
+        
+        <a href="/categories">
+            <i class="fa-solid fa-bookmark fa-fw"></i>
+            <span>&ensp;Categories</span>
+        </a>
+        
+        <a href="/tags">
+            <i class="fa-solid fa-tags fa-fw"></i>
+            <span>&ensp;Tags</span>
+        </a>
+        
+    </nav>
+    <nav id="mobile-menu">
+        <div class="title" @click="showMenuItems = !showMenuItems">
+            <i class="fa-solid fa-bars fa-fw"></i>
+            <span>&emsp;FAITHKIVI&#39;S</span>
+        </div>
+        <transition name="slide">
+            <div class="items" v-show="showMenuItems">
+                
+                <a href="/">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-house fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Home</div>
+                    </div>
+                </a>
+                
+                <a href="/about">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-id-card fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">About</div>
+                    </div>
+                </a>
+                
+                <a href="/archives">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-box-archive fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Archives</div>
+                    </div>
+                </a>
+                
+                <a href="/categories">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-bookmark fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Categories</div>
+                    </div>
+                </a>
+                
+                <a href="/tags">
+                    <div class="item">
+                        <div style="min-width: 20px; max-width: 50px; width: 10%">
+                            <i class="fa-solid fa-tags fa-fw"></i>
+                        </div>
+                        <div style="min-width: 100px; max-width: 150%; width: 20%">Tags</div>
+                    </div>
+                </a>
+                
+            </div>
+        </transition>
+    </nav>
+</div>
+<transition name="fade">
+    <div id="menu-curtain" @click="showMenuItems = !showMenuItems" v-show="showMenuItems"></div>
+</transition>
+
+        <div id="main" :class="loading ? 'into-enter-from': 'into-enter-active'">
+            <div class="article">
+    <div>
+        <h1>About</h1>
+    </div>
+    <div class="info">
+        <span class="date">
+            <span class="icon">
+                <i class="fa-solid fa-calendar fa-fw"></i>
+            </span>
+            2024/10/9
+        </span>
+        
+        
+    </div>
+    
+    <div class="content" v-pre>
+        <h1 id="About-me"><a href="#About-me" class="headerlink" title="About me:"></a><em><strong>About me:</strong></em></h1><p>​	我是FaithKivi，中文昵称为烟雨织千愁 ，熟悉我的人一般都叫我吉吉。现在还是一名学生，主攻嵌入式大方向，爱好较为广泛，后面再一一一赘述吧。</p>
+<h2 id="关于博客："><a href="#关于博客：" class="headerlink" title="关于博客："></a><em>关于博客：</em></h2><p>​	这个博客主要是更新自己的一些所做领域上的东西，还有对自己的一些想法、对所读所看的作品的评价。平时的自己就愿意写一些东西，把博客建好之后，就希望能够写一些自己愿意写的东西，发在自己的博客上，也算是作为自己的小小的窝，或许以后的我看到以前的文章会有所感触罢。</p>
+<h2 id="关于自己："><a href="#关于自己：" class="headerlink" title="关于自己："></a><em><strong>关于自己：</strong></em></h2><p>​	男，一个逗比</p>
+<ul>
+<li>有着比较多的爱好，也喜欢去尝试新的东西（<del>不过很多都是三分钟热度</del>）</li>
+<li>比较乐观，人活着嘛，开心就是了</li>
+<li>低浓度二次元，喜欢可可爱爱的事物，反差萌也不错哦</li>
+<li>写作热衷者，喜欢将自己的想法写下来，不管好不好，先写就是了</li>
+<li>深夜低浓度emo者，朋友评价我为：有的时候像个少年，有的时候像个大叔</li>
+<li>游戏爱好者，什么都玩，最近喜欢打雀！喜欢街霸6（真男人就1v1格斗）！喜欢LOL！喜欢RPG!联机游戏、3A游戏都有涉猎，可以一起来玩。</li>
+<li>网文爱好者，喜欢读很多的爽文，放空大脑，浪费时间专属，不过也很喜欢写的不错的爽文，喜欢上文学还是因为《剑来》，大总管的文章还是很不错的</li>
+<li>文学爱好者，因为某些原因喜欢上了读书，不得不说的是，短短的几个汉字能够带来很大的感触。</li>
+<li>B站热衷粉，常年混迹B站，<del>还很喜欢舞蹈区（不是</del></li>
+<li>音乐热衷粉，每个月网易云超过200小时，欧美，古风，流行都有涉猎</li>
+</ul>
+<p>​	人生来此一趟还是蛮开心的，自己所做的，也从不后悔，毕竟没办法修改，恪守本心，坚持自己或许就是我建立这个博客最大的愿望，它能看着我的成长，也能反映出我自己一个人的成长。</p>
+<p>​	总之，喜欢来玩，联系方式：<p style="color: #0000FF;">845726328（QQ）</p></p>
+
+    </div>
+    
+    
+    
+    
+    
+    
+    
+</div>
+
+            <footer id="footer">
+    <div id="footer-wrap">
+        <div>
+            &copy;
+            2024 - 2024 FaithKivi&#39;s
+            <span id="footer-icon">
+                <i class="fa-solid fa-font-awesome fa-fw"></i>
+            </span>
+            &commat;FaithKivi
+        </div>
+        <div>
+            Based on the <a target="_blank" rel="noopener" href="https://hexo.io">Hexo Engine</a> &amp;
+            <a target="_blank" rel="noopener" href="https://github.com/theme-particlex/hexo-theme-particlex">ParticleX Theme</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+        
+        <transition name="fade">
+            <div id="preview" ref="preview" v-show="previewShow">
+                <img id="preview-content" ref="previewContent" />
+            </div>
+        </transition>
+        
+    </div>
+    <script src="/js/main.js"></script>
+    
+    
+
+
+
+
+    
+</body>
+</html>
