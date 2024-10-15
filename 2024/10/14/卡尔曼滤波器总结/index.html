@@ -193,7 +193,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/" style="color: #03a9f4">
+                <a href="/tags/%E5%8D%A1%E5%B0%94%E6%9B%BC%E6%BB%A4%E6%B3%A2/" style="color: #00a596">
                     卡尔曼滤波
                 </a>
             </span>
@@ -203,13 +203,88 @@
     </div>
     
     <div class="content" v-pre>
-        <p>​	我所学的卡尔曼滤波器是和dr.can学习的，由于dr.can在视频中所讲的原理，计算已经很具体了，因此我就按照我自己的理解重新归纳整理。想要看dr.can的同学我在这里放上链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ez4y1X7eR/?spm_id_from=333.337.search-card.all.click&vd_source=cfc7321b2a5427fca1306a84ad41973d">【卡尔曼滤波器】1_递归算法_Recursive Processing_哔哩哔哩_bilibili</a>。</p>
+        <p>​	我所学的卡尔曼滤波器是和dr.can学习的，由于dr.can在视频中所讲的原理，计算已经很具体了，因此我就按照我自己的理解重新归纳整理。想要看dr.can的同学我在这里放上链接：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1ez4y1X7eR/?spm_id_from=333.337.search-card.all.click&amp;vd_source=cfc7321b2a5427fca1306a84ad41973d">【卡尔曼滤波器】1_递归算法_Recursive Processing_哔哩哔哩_bilibili</a>。</p>
 <p>​	在理解卡尔曼滤波器之前，先了解两个概念，一个是协方差矩阵，一个是状态空间方程。</p>
-<h2 id="协方差矩阵"><a href="#协方差矩阵" class="headerlink" title="协方差矩阵"></a>协方差矩阵</h2><p>​	协方差矩阵是一个描述各个维度间的关联性的矩阵，举个:chestnut:<br>$$<br>身高\qquad体重\qquad 年龄 \<br>\left(<br>\begin{array}{1}<br>32.69 &amp; 29.75 &amp; -1.4\<br>29.75 &amp; 38.06 &amp; 3.98\<br>-1.4 &amp; 3.978 &amp; 19.4<br>\end{array}<br>\right)<br>$$<br>​	这是一个协方差矩阵，我们可以看到身高，体重，年龄互相的关系，正数表示正相关，负数则表示负相关，矩阵中的-1.4则表示身高与年龄成负相关，随着年龄的增加，身高会有减少。</p>
-<h3 id="如何计算协方差矩阵"><a href="#如何计算协方差矩阵" class="headerlink" title="如何计算协方差矩阵"></a>如何计算协方差矩阵</h3><p>​	我们现在有一个2*N个矩阵，两个维度，N个变量:<br>$$<br>A&#x3D;\left (<br>\begin{array}{1}<br>a_1 &amp; a_2 &amp; a_3 &amp;\cdots &amp;a_N\<br>b_1 &amp; b_2 &amp; b_3 &amp;\cdots &amp;b_N<br>\end{array}<br>\right)<br>$$<br>​	N个变量：<br>$$<br>A_1&#x3D;<br>\left(<br>\begin{array}{1}<br>a_1\<br>b_1<br>\end{array}<br>\right )<br>A_2&#x3D;<br>\left(<br>\begin{array}{1}<br>a_2\<br>b_2<br>\end{array}<br>\right )<br>\cdots<br>A_N&#x3D;<br>\left(<br>\begin{array}{1}<br>a_N\<br>b_N<br>\end{array}<br>\right )<br>$$<br>​	接下来计算每个维度的平均值：<br>$$<br>M&#x3D;\left(<br>\begin{array}{1}<br>\frac{1}{N} \cdot (a_1+a_2+\cdots+a_N)\<br>\frac{1}{N} \cdot (b_1+b_2+\cdots+b_N)<br>\end{array}<br>\right)<br>$$<br>​	然后，每个变量减去平均值：<br>$$<br>B&#x3D;<br>\left(<br>\begin{array}{1}<br>A_1-M &amp; A_2-M &amp; \cdots &amp; A_N-M<br>\end{array}<br>\right )<br>$$<br>​	最后算出协方差矩阵：<br>$$<br>P&#x3D;\frac{1}{N-1}BB^T<br>$$</p>
-<h2 id="状态空间方程"><a href="#状态空间方程" class="headerlink" title="状态空间方程"></a>状态空间方程</h2><h3 id="状态变量"><a href="#状态变量" class="headerlink" title="状态变量"></a>状态变量</h3><p>​	把一件事物抽象为一个系统，通过一些可观测可测量的量，描述这个系统，这些变量就是状态变量，比如说对于人走路这个系统来说，人的速度和位置就是状态变量。</p>
-<h3 id="状态向量"><a href="#状态向量" class="headerlink" title="状态向量"></a>状态向量</h3><p>​	如果完全描述一个系统的动态行为需要n个状态变量，那么这n个状态变量作分量所构成的向量就叫做该系统的状态向量。</p>
-<h3 id="状态空间方程-1"><a href="#状态空间方程-1" class="headerlink" title="状态空间方程"></a>状态空间方程</h3><p>​	如果只是一堆变量无法描述这个系统，需要加上常量和公式，才能完整地描述整个系统。<br>$$<br>\begin{cases}<br>\ddot{x_1}&#x3D;a_{11}x_1+a_{12}x_2+\dots+a_{1N}x_N+b_1u\<br>\ddot{x_2}&#x3D;a_{21}x_1+a_{22}x_2+\dots+a_{2N}x_N+b_2u\<br>\vdots\<br>\ddot{x_N}&#x3D;a_{N1}x_1+a_{N2}x_2+\dots+a_{NN}x_N+b_Nu<br>\end{cases}<br>$$</p>
+<h2 id="协方差矩阵">协方差矩阵</h2>
+<p>​	协方差矩阵是一个描述各个维度间的关联性的矩阵，举个🌰<br>
+$$<br>
+身高\qquad体重\qquad 年龄 \<br>
+\left(<br>
+\begin{array}{1}<br>
+32.69 &amp; 29.75 &amp; -1.4\<br>
+29.75 &amp; 38.06 &amp; 3.98\<br>
+-1.4 &amp; 3.978 &amp; 19.4<br>
+\end{array}<br>
+\right)<br>
+$$​	这是一个协方差矩阵，我们可以看到身高，体重，年龄互相的关系，正数表示正相关，负数则表示负相关，矩阵中的-1.4则表示身高与年龄成负相关，随着年龄的增加，身高会有减少。</p>
+<h3 id="如何计算协方差矩阵">如何计算协方差矩阵</h3>
+<p>​	我们现在有一个2*N个矩阵，两个维度，N个变量:<br>
+$$<br>
+A=\left (<br>
+\begin{array}{1}<br>
+a_1 &amp; a_2 &amp; a_3 &amp;\cdots &amp;a_N\<br>
+b_1 &amp; b_2 &amp; b_3 &amp;\cdots &amp;b_N<br>
+\end{array}<br>
+\right)<br>
+$$​	N个变量：<br>
+$$<br>
+A_1=<br>
+\left(<br>
+\begin{array}{1}<br>
+a_1\<br>
+b_1<br>
+\end{array}<br>
+\right )<br>
+A_2=<br>
+\left(<br>
+\begin{array}{1}<br>
+a_2\<br>
+b_2<br>
+\end{array}<br>
+\right )<br>
+\cdots<br>
+A_N=<br>
+\left(<br>
+\begin{array}{1}<br>
+a_N\<br>
+b_N<br>
+\end{array}<br>
+\right )<br>
+$$​	接下来计算每个维度的平均值：<br>
+$$<br>
+M=\left(<br>
+\begin{array}{1}<br>
+\frac{1}{N} \cdot (a_1+a_2+\cdots+a_N)\<br>
+\frac{1}{N} \cdot (b_1+b_2+\cdots+b_N)<br>
+\end{array}<br>
+\right)<br>
+$$​	然后，每个变量减去平均值：<br>
+$$<br>
+B=<br>
+\left(<br>
+\begin{array}{1}<br>
+A_1-M &amp; A_2-M &amp; \cdots &amp; A_N-M<br>
+\end{array}<br>
+\right )<br>
+$$​	最后算出协方差矩阵：<br>
+$$<br>
+P=\frac{1}{N-1}BB^T<br>
+$$</p>
+<h2 id="状态空间方程">状态空间方程</h2>
+<h3 id="状态变量">状态变量</h3>
+<p>​	把一件事物抽象为一个系统，通过一些可观测可测量的量，描述这个系统，这些变量就是状态变量，比如说对于人走路这个系统来说，人的速度和位置就是状态变量。</p>
+<h3 id="状态向量">状态向量</h3>
+<p>​	如果完全描述一个系统的动态行为需要n个状态变量，那么这n个状态变量作分量所构成的向量就叫做该系统的状态向量。</p>
+<h3 id="状态空间方程-2">状态空间方程</h3>
+<p>​	如果只是一堆变量无法描述这个系统，需要加上常量和公式，才能完整地描述整个系统。<br>
+$$<br>
+\begin{cases}<br>
+\ddot{x_1}=a_{11}x_1+a_{12}x_2+\dots+a_{1N}x_N+b_1u\<br>
+\ddot{x_2}=a_{21}x_1+a_{22}x_2+\dots+a_{2N}x_N+b_2u\<br>
+\vdots\<br>
+\ddot{x_N}=a_{N1}x_1+a_{N2}x_2+\dots+a_{NN}x_N+b_Nu<br>
+\end{cases}<br>
+$$</p>
 
     </div>
     
