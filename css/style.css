@@ -1,8 +1,8 @@
 :root {
   --gutter: 24px;
   --radius: 13px;
-  --color-primary: #ff4e6a;
-  --color2: #ff761e;
+  --color-primary: #e67249;
+  --color2: rgba(255,118,30,0.5);
   --color3: #ffb900;
   --color4: #33d57a;
   --color5: #00dbff;
@@ -20,12 +20,16 @@
   --color-text-1: #111;
   --color-text-2: #444;
   --color-text-3: #363636;
+  --clock-logo: url("/images/background/clock_logo.png");
+  --qweather-logo: url("/images/background/clock_logo.png");
+  --character: url("/images/background/character.png");
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --color-card: #2b2b2b;
     --color-text-1: #fff;
     --color-text-2: #ccc;
+    --color-text-3: #ccc;
   }
 }
 .nexmoe-archives .tagcloud {
@@ -529,7 +533,7 @@ article ul li {
   position: relative;
   padding: 8px 0;
   padding-left: 25px;
-  line-height: 1rem;
+  line-height: 1.5rem;
 }
 article ul li::before {
   content: '';
@@ -664,7 +668,19 @@ font.douyin {
   position: fixed;
   top: 0;
   left: 0;
+  z-index: -2;
+}
+#nexmoe-background .nexmoe-character {
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  left: 0;
+  bottom: 0;
   z-index: -1;
+  background-image: var(--character);
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position-x: -100px;
 }
 #nexmoe-background .mdui-appbar {
   padding: 10px;
@@ -933,6 +949,11 @@ article.nexmoe-py ul li img {
 .nexmoe-posts .nexmoe-post:last-child {
   margin-bottom: 24px;
 }
+.nexmoe-post article blockquote {
+  color: var(--color-text-2) !important;
+  background-color: var(--color-card) !important;
+  border: 1px solid var(--color-text-2) !important;
+}
 .nexmoe-post .nexmoe-post-cover {
   width: 100%;
   position: relative;
@@ -1030,8 +1051,8 @@ article.nexmoe-py ul li img {
   margin: 0 -25px;
   margin-bottom: 25px;
   padding: 25px;
-  color: #191919;
-  background-color: #fafafa;
+  color: var(--color-text-2);
+  background-color: var(--color-card);
   line-height: 1.5em;
   position: relative;
   overflow: hidden;
@@ -1050,10 +1071,26 @@ article.nexmoe-py ul li img {
   opacity: 0.1;
 }
 .nexmoe-post-footer {
-  background-color: #f5f6f5;
+  background-color: var(--color-card);
   padding: 24px;
   margin: -24px;
   margin-top: 0;
+}
+.nexmoe-post-footer .valine .vwrap .vcontrol div:first-child {
+  display: none;
+}
+.nexmoe-post-footer .valine .vwrap .vcontrol .text-right {
+  width: 100% !important;
+}
+.nexmoe-post-footer .valine .vwrap .vcontrol .text-right .vsubmit:hover {
+  border-color: var(--color-primary) !important;
+  color: var(--color-primary) !important;
+}
+.nexmoe-post-footer .valine .vlist .vh .vhead .vnick {
+  color: var(--color-primary);
+}
+.nexmoe-post-footer .valine .info {
+  display: none;
 }
 .nexmoe-widget-wrap .nexmoe-widget .hitokoto-box {
   margin: 0 auto;
@@ -1172,7 +1209,7 @@ article.nexmoe-py ul li img {
   padding: 12px 18px;
 }
 .nexmoe-widget-wrap .nexmoe-widget ul li a {
-  color: #606266;
+  color: var(--color-text-3);
 }
 .nexmoe-widget-wrap .nexmoe-widget ul li:last-child {
   border-bottom: none;
@@ -1359,22 +1396,41 @@ body {
   height: 0;
 }
 .nexmoe #nexmoe-header .nexmoe-count {
-  padding: 0 30px;
   margin-bottom: 30px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
 }
-.nexmoe #nexmoe-header .nexmoe-count div {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
+.nexmoe #nexmoe-header .nexmoe-count .nexmoe-count-item {
+  flex: none;
+  width: 60px;
+  padding: 15px 0;
+  background-color: var(--color-primary);
+  transform: rotate(0deg);
+  border-radius: 50%;
+  color: #fff;
+  box-shadow: 0 2px 12px var(--color-primary);
+  position: relative;
   text-align: center;
-  color: #a3a8ae;
+  font-size: 14px;
 }
-.nexmoe #nexmoe-header .nexmoe-count div span {
-  color: var(--color-text-2);
-  display: block;
+.nexmoe #nexmoe-header .nexmoe-count .nexmoe-count-item .item-radius {
+  position: absolute;
+  left: 5px;
+  top: -3px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+}
+.nexmoe #nexmoe-header .nexmoe-count .nexmoe-count-item .item-right {
+  left: auto;
+  right: 5px;
+}
+.nexmoe #nexmoe-header .nexmoe-count .nexmoe-count-item span {
+  color: #fff;
 }
 .nexmoe #nexmoe-header .nexmoe-list {
   padding: 8px 20px;
@@ -1524,8 +1580,8 @@ body.mdui-drawer-body-left {
   opacity: 0;
 }
 .nexmoe-post-right .nexmoe-tool .mdui-fab {
-  background: #fff;
-  color: #444;
+  background: var(--color-card);
+  color: var(--color-text-2);
 }
 @media screen and (max-width: 1024px) {
   .nexmoe-post-right {
@@ -1550,7 +1606,7 @@ body.mdui-drawer-body-left {
   white-space: normal;
   text-align: left;
   box-shadow: 0 0 1rem var(--color-shadow);
-  background-color: #fff;
+  background-color: var(--color-card);
   position: absolute;
   bottom: 0px;
   right: 0;
@@ -1566,7 +1622,7 @@ body.mdui-drawer-body-left {
   border-radius: 8px;
   padding: 0.4rem 0.8rem;
   display: block;
-  color: rgba(0,0,0,0.6);
+  color: var(--color-text-2);
 }
 .nexmoe-toc a:hover {
   color: #fff;
