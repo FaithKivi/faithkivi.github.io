@@ -629,7 +629,7 @@ a {
 }
 .menu-color .title,
 .menu-color a {
-  color: #8c5b4b !important;
+  color: #2775b6 !important;
 }
 .content code {
   font-family: CascadiaCode;
@@ -1153,10 +1153,10 @@ body {
 #home-card .card-style .name {
   font-size: 1.25em;
   letter-spacing: 0.08em;
-  color: #4a3b32;
+  color: #2775b6;
 }
 #home-card .card-style .descriptions .description {
-  color: #8c7a6b;
+  color: #ee4866;
   line-height: 1.9;
   letter-spacing: 0.04em;
 }
