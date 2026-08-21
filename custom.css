@@ -1,0 +1,156 @@
+/* ==========================================================================
+   Faithkivi 博客自定义样式
+   设计：暖珊瑚红（主）+ 青绿（辅）双色，衬线字体，古典气息
+   仅在站点层面覆盖主题默认，遵循 tangyuxian 的 CSS 变量体系
+   ========================================================================== */
+
+/* ---------- 1. 主题色重定义（覆盖主题默认橘色 #e67249） ---------- */
+:root {
+    /* 主色：暖珊瑚红 */
+    --color-primary: #ed556a;
+    --color-primary-bg: rgba(237, 85, 106, 0.13);
+    --color2: rgba(93, 190, 138, 0.85);
+    --color2-bg: rgba(93, 190, 138, 0.13);
+    /* 青绿辅助，用于列表/标签点缀 */
+    --color4: #5dbe8a;
+    --color4-bg: rgba(93, 190, 138, 0.13);
+    /* 正文配色微调 */
+    --color-text-2: #3f3f3f;
+    --color-shadow: rgba(161, 177, 204, 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-primary-bg: rgba(237, 85, 106, 0.22);
+        --color2-bg: rgba(93, 190, 138, 0.22);
+        --color4-bg: rgba(93, 190, 138, 0.22);
+    }
+}
+
+/* ---------- 2. 衬线字体（霞鹜文楷 + 思源，jsdelivr CDN 在 slotHead 引入） ---------- */
+body {
+    font-family: "LXGW WenKai Screen", "Noto Serif SC", "Songti SC", "STSong",
+        SimSun, serif;
+}
+
+article {
+    font-family: "LXGW WenKai Screen", "Noto Serif SC", "Songti SC", "STSong",
+        SimSun, serif;
+}
+
+/* 标题与首页文章标题用楷体，更显文气 */
+article h1,
+article h2,
+article h3,
+article h4,
+.nexmoe-post-cover h1,
+.nexmoe-list-item .mdui-list-item-content {
+    font-family: "LXGW WenKai", "LXGW WenKai Screen", "Kaiti SC", "STKaiti",
+        KaiTi, serif;
+    font-weight: 600;
+}
+
+/* ---------- 3. 正文排版优化（提升中文阅读体验） ---------- */
+article p {
+    line-height: 1.9 !important;   /* 覆盖主题默认 24px 固定行高 */
+    font-size: 17px;
+    letter-spacing: 0.02em;
+    text-align: justify;          /* 两端对齐，中文排版更整齐 */
+    margin-bottom: 1em;
+}
+
+/* 首段/引语式开头的段首不缩进，其余自然；此处保持简洁不做强缩进 */
+
+/* 引用块：浅红底 + 左侧竖线，古典题记感 */
+article blockquote {
+    background-color: rgba(237, 85, 106, 0.05);
+    border: 1px solid rgba(237, 85, 106, 0.15);
+    border-left: 3px solid var(--color-primary);
+    color: var(--color-text-2);
+    margin: 1.2em 0;
+    padding: 0.6em 1.4em;
+    line-height: 1.8;
+}
+
+article blockquote:before,
+article blockquote:after {
+    display: none;              /* 隐藏默认引号水印，改为简洁竖线风格 */
+}
+
+/* 链接：主色，取消笨重下划线，hover 用青绿微调 */
+article a {
+    color: var(--color-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.25s ease-out;
+}
+
+article a:hover {
+    color: var(--color4);
+    border-bottom-color: var(--color4);
+}
+
+/* 列表圆点用青绿点缀 */
+article ul li::before {
+    background: var(--color4);
+}
+
+/* ---------- 4. 封面标题文字影，更清晰 ---------- */
+.nexmoe-post-cover h1 {
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+    letter-spacing: 0.05em;
+}
+
+/* ---------- 5. 首页文章卡片悬停微交互 ---------- */
+.nexmoe-post-cover {
+    transition: transform 0.35s ease-out, box-shadow 0.35s ease-out;
+}
+
+.nexmoe-post:hover .nexmoe-post-cover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px var(--color-shadow);
+}
+
+/* ---------- 6. 侧栏菜单当前项 & 头像环，与主色一致 ---------- */
+.nexmoe-list-item.true {
+    background: var(--color-primary) !important;
+}
+
+.nexmoe-avatar img {
+    transition: transform 0.6s ease-out;
+}
+
+.nexmoe-avatar:hover img {
+    transform: scale(1.06);
+}
+
+/* ---------- 7. 滚动条美化（WebKit） ---------- */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(237, 85, 106, 0.35);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-primary);
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* ---------- 8. 移动端适配 ---------- */
+@media screen and (max-width: 768px) {
+    article p {
+        font-size: 16px;
+        line-height: 1.85 !important;
+    }
+
+    .nexmoe-post-cover h1 {
+        font-size: 1.8rem;
+    }
+}
