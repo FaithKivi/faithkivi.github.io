@@ -186,7 +186,7 @@
             
             <span class="tag">
                 
-                <a href="/tags/随笔" style=color:#ffa2c4>
+                <a href="/tags/随笔" style=color:#00bcd4>
                     随笔
                 </a>
             </span>
@@ -205,10 +205,22 @@
     </div>
 
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
     <div id="comment">
-        <div id="gitalk-container">
-        </div>
+        <script src="https://giscus.app/client.js"
+            data-repo="faithkivi/faithkivi.github.io"
+            data-repo-id="R_kgDOIwasqQ"
+            data-category="General"
+            data-category-id="DIC_kwDOIwasqc4CtXTZ"
+            data-mapping="pathname"
+            data-strict="0"
+            data-reactions-enabled="1"
+            data-emit-metadata="0"
+            data-input-position="bottom"
+            data-theme="preferred_color_scheme"
+            data-lang="zh-CN"
+            crossorigin="anonymous"
+            async>
+        </script>
     </div>
     
 </div>
@@ -281,22 +293,6 @@
         }
     })
 </script>
-
-<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-<script>
-    const gitalk = new Gitalk({
-        clientID: 'Ov23liB8kG7KEISZvq6U',
-        clientSecret: '8ccfa985a073ab27f15cc9059b76385bec30c1b9',
-        repo: 'faithkivi.github.io',      // The repository of store comments,
-        owner: 'faithkivi',
-        admin: ['faithkivi'],
-        language: 'zh-CN',
-        id: location.pathname,      // Ensure uniqueness and length less than 50
-        distractionFreeMode: true  // Facebook-like distraction free mode
-    })
-    gitalk.render('gitalk-container')
-</script>
-
 </body>
 
 </html>
